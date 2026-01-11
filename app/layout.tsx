@@ -35,6 +35,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </header>
             <main>{children}</main>
           </div>
+
+           <footer className="py-6 text-center border-t mt-12 text-sm text-gray-500">
+            <p>© {new Date().getFullYear()} My Blog Name. All rights reserved.</p>
+            <div className="flex justify-center gap-4 mt-2">
+              <a href="/twitter" className="hover:underline">Twitter</a>
+              <a href="/github" className="hover:underline">GitHub</a>
+            </div>
+          </footer>
+          
           <Analytics />
         </ThemeProvider>
       </body>
