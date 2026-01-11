@@ -16,6 +16,10 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+import { MobileNav } from "@/components/mobile-nav"
+
+// ... imports
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
@@ -26,9 +30,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex flex-col min-h-screen">
             <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/75 backdrop-blur dark:bg-slate-950/75 dark:border-slate-800">
               <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <Link href="/" className="font-bold text-xl tracking-tight">
-                  Platform
-                </Link>
+                <div className="flex items-center gap-2">
+                  <Link href="/" className="font-bold text-xl tracking-tight">
+                    Platform
+                  </Link>
+                </div>
                 <div className="flex items-center gap-6">
                   <nav className="text-sm font-medium space-x-6 hidden sm:block">
                     <Link href="/" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Home</Link>
@@ -36,6 +42,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     <Link href="/posts" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Blog</Link>
                   </nav>
                   <ModeToggle />
+                  <MobileNav />
                 </div>
               </div>
             </header>

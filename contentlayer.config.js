@@ -44,8 +44,26 @@ export const Post = defineDocumentType(() => ({
       type: "date",
       required: true,
     },
+    tags: {
+      type: "list",
+      of: { type: "string" },
+      required: false,
+    },
   },
-  computedFields,
+  computedFields: {
+    ...computedFields,
+    readingTime: {
+      type: "json",
+      resolve: (doc) => {
+        const words = doc.body.raw.split(/\s+/gu).length
+        const minutes = Math.ceil(words / 200)
+        return {
+          text: `${minutes} min read`,
+          minutes,
+        }
+      },
+    },
+  },
 }))
 
 export default makeSource({
