@@ -20,30 +20,39 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body
-        className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className}`}
+        className={`antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 ${inter.className} selection:bg-blue-100 dark:selection:bg-blue-900`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="max-w-2xl mx-auto py-10 px-4">
-            <header>
-              <div className="flex items-center justify-between">
-                <ModeToggle />
-                <nav className="ml-auto text-sm font-medium space-x-6">
-                  <Link href="/">Home</Link>
-                  <Link href="/about">About</Link>
-                </nav>
+          <div className="flex flex-col min-h-screen">
+            <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/75 backdrop-blur dark:bg-slate-950/75 dark:border-slate-800">
+              <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+                <Link href="/" className="font-bold text-xl tracking-tight">
+                  Platform
+                </Link>
+                <div className="flex items-center gap-6">
+                  <nav className="text-sm font-medium space-x-6 hidden sm:block">
+                    <Link href="/" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Home</Link>
+                    <Link href="/about" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">About</Link>
+                    <Link href="/posts" className="transition-colors hover:text-blue-600 dark:hover:text-blue-400">Blog</Link>
+                  </nav>
+                  <ModeToggle />
+                </div>
               </div>
             </header>
-            <main>{children}</main>
+            <main className="flex-1 container mx-auto px-4 py-8">
+              {children}
+            </main>
+            <footer className="border-t border-slate-200 dark:border-slate-800 py-8 bg-slate-50 dark:bg-slate-900/50">
+              <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+                <p>© {new Date().getFullYear()} Platform. All rights reserved.</p>
+                <div className="flex gap-6">
+                  <a href="/twitter" className="hover:text-slate-900 dark:hover:text-slate-300 transition-colors">Twitter</a>
+                  <a href="/github" className="hover:text-slate-900 dark:hover:text-slate-300 transition-colors">GitHub</a>
+                  <a href="/privacy" className="hover:text-slate-900 dark:hover:text-slate-300 transition-colors">Privacy</a>
+                </div>
+              </div>
+            </footer>
           </div>
-
-           <footer className="py-6 text-center border-t mt-12 text-sm text-gray-500">
-            <p>© {new Date().getFullYear()} My Blog Name. All rights reserved.</p>
-            <div className="flex justify-center gap-4 mt-2">
-              <a href="/twitter" className="hover:underline">Twitter</a>
-              <a href="/github" className="hover:underline">GitHub</a>
-            </div>
-          </footer>
-          
           <Analytics />
         </ThemeProvider>
       </body>
