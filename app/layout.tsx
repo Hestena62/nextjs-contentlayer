@@ -16,6 +16,19 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+import { SearchBar } from "@/components/search-bar"
+
+export default function Home() {
+  return (
+    <div className="container py-10">
+       <h1 className="text-3xl font-bold mb-4">My Blog</h1>
+       <SearchBar /> 
+       {/* ... rest of your posts list ... */}
+    </div>
+  )
+}
+
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
